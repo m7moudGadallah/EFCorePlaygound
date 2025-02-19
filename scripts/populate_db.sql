@@ -52,8 +52,8 @@ INSERT INTO Courses (Title, CreditHours) VALUES
 ('Automobile Engineering', 3);
 GO
 
--- Insert TrackCourses (After both Tracks and Courses exist)
-INSERT INTO TrackCourses (TrackId, CourseId) VALUES 
+-- Insert CourseTrack (After both Tracks and Courses exist)
+INSERT INTO CourseTrack (TrackId, CourseId) VALUES 
 (1, 1),  -- AI -> Introduction to AI
 (1, 2),  -- AI -> Machine Learning
 (2, 3),  -- Cybersecurity -> Cybersecurity Principles

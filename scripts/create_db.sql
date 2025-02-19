@@ -56,7 +56,7 @@ CREATE TABLE Courses (
 );
 GO
 
-CREATE TABLE TrackCourses (
+CREATE TABLE CourseTrack (
     TrackId INT NOT NULL,
     CourseId INT NOT NULL,
     PRIMARY KEY (TrackId, CourseId),
