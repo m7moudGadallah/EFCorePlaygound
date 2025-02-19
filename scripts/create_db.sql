@@ -57,10 +57,10 @@ CREATE TABLE Courses (
 GO
 
 CREATE TABLE CourseTrack (
-    TrackId INT NOT NULL,
-    CourseId INT NOT NULL,
-    PRIMARY KEY (TrackId, CourseId),
-    FOREIGN KEY (TrackId) REFERENCES Tracks(Id) ON DELETE CASCADE,
-    FOREIGN KEY (CourseId) REFERENCES Courses(Id) ON DELETE CASCADE
+    TracksId INT NOT NULL,
+    CoursesId INT NOT NULL,
+    PRIMARY KEY (TracksId, CoursesId),
+    FOREIGN KEY (TracksId) REFERENCES Tracks(Id) ON DELETE CASCADE,
+    FOREIGN KEY (CoursesId) REFERENCES Courses(Id) ON DELETE CASCADE
 );
 GO
