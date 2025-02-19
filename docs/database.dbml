@@ -32,8 +32,8 @@ Table Departments {
 }
 
 Table CourseTrack {
-    TrackId int
-    CourseId int
+    TracksId int
+    CoursesId int
 }
 
 ///////////////////////////////////////////
@@ -49,8 +49,8 @@ Ref: Departments.Id < Instructors.DepartmentId  // A department has many instruc
 Ref: Tracks.Id < Students.TrackId  // A track has many students
 
 // Many-to-Many (M:N)
-Ref: Tracks.Id < CourseTrack.TrackId
-Ref: Courses.Id < CourseTrack.CourseId  // Tracks contain multiple courses
+Ref: Tracks.Id < CourseTrack.TracksId
+Ref: Courses.Id < CourseTrack.CoursesId  // Tracks contain multiple courses
 
 // Recursive Relationship (1:M)
 Ref: Instructors.Id < Instructors.SupervisorId  // An instructor can have a supervisor (another instructor)
