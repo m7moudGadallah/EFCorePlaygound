@@ -41,7 +41,7 @@ Look at the database schema using `DBML` file [here](./docs/database.dbml)
 
 > [!Note]
 >
-> if you want to run the `DbFirst` project, you need to create a database first (using the scripts provided in the `scripts` directory) and update the connection string in the `app.settings.json` file.
+> if you want to run the `DbFirst` project, you need to create a database first (using the scripts provided in the `scripts` directory) and update the connection string in the `app.settings.json` file and then run `scaffold-dbcontext` command to generate the models.
 
 ## File Structure
 
@@ -53,6 +53,8 @@ EFPlayground
 │   ├── app.settings.json
 ├── DbFirst
 │   ├── Program.cs
+│   ├── Models
+│   │   ├── SchoolContext.cs
 ├── CFDataAnnotations
 │   ├── Program.cs
 │   ├── Models
