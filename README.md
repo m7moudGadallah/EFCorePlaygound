@@ -54,7 +54,10 @@ EFPlayground
 ├── DbFirst
 │   ├── Program.cs
 │   ├── Models
-│   │   ├── SchoolContext.cs
+│   │   ├── SchoolContext.cs # (Add by EF Core)
+│   │   ├── SchoolContext.Developer.cs #(Added by me to add custom methods)
+│   │   ├── Student.cs #(Added by EF Core)
+│   │   ├── Student.Developer.cs #(Added by me to add custom methods)
 ├── CFDataAnnotations
 │   ├── Program.cs
 │   ├── Models
