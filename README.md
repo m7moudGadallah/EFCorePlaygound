@@ -17,6 +17,10 @@ Look at the database schema using `DBML` file [here](./docs/database.dbml)
 
 ![ERD](./docs/erd.png)
 
+> [!Note]
+>
+> There is another approach for this design to create parent table for `Student` and `Instructor` tables, and use `Discriminator` column to differentiate between them. But I wanted to keep it simple and separate them.
+
 ## How to run
 
 1. Clone this repository
