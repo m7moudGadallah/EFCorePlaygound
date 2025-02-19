@@ -105,15 +105,15 @@ public partial class SchoolContext : DbContext
                 .UsingEntity<Dictionary<string, object>>(
                     "TrackCourse",
                     r => r.HasOne<Course>().WithMany()
-                        .HasForeignKey("CourseId")
+                        .HasForeignKey("CoursesId")
                         .HasConstraintName("FK__TrackCour__Cours__5AEE82B9"),
                     l => l.HasOne<Track>().WithMany()
-                        .HasForeignKey("TrackId")
+                        .HasForeignKey("TracksId")
                         .HasConstraintName("FK__TrackCour__Track__59FA5E80"),
                     j =>
                     {
-                        j.HasKey("TrackId", "CourseId").HasName("PK__TrackCou__16E62FFA17A4F368");
-                        j.ToTable("TrackCourses");
+                        j.HasKey("TracksId", "CoursesId").HasName("PK__TrackCou__16E62FFA17A4F368");
+                        j.ToTable("CourseTrack");
                     });
         });
 
