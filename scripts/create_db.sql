@@ -1,52 +1,54 @@
 USE master;
 GO
 
+DROP DATABASE IF EXISTS School;
+GO
+
 CREATE DATABASE School;
 GO
 
 USE School;
 GO
 
--- Create the Departments table
 CREATE TABLE Departments (
     Id INT PRIMARY KEY IDENTITY(1,1),
     Name VARCHAR(100) NOT NULL,
-    HeadInstructorId INT UNIQUE
+    HeadInstructorId INT NULL
 );
 GO
 
--- Create the Instructors table
 CREATE TABLE Instructors (
     Id INT PRIMARY KEY IDENTITY(1,1),
     Name VARCHAR(100) NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
-    SupervisorId INT,
-    DepartmentId INT,
-    FOREIGN KEY (SupervisorId) REFERENCES Instructors(Id), -- Recursive relationship
-    FOREIGN KEY (DepartmentId) REFERENCES Departments(Id) -- One-to-Many relationship
+    SupervisorId INT NULL,
+    DepartmentId INT NOT NULL,
+    FOREIGN KEY (SupervisorId) REFERENCES Instructors(Id) ON DELETE NO ACTION,
+    FOREIGN KEY (DepartmentId) REFERENCES Departments(Id) ON DELETE CASCADE
 );
 GO
 
--- Create the Tracks table
+ALTER TABLE Departments
+ADD CONSTRAINT FK_HeadInstructor FOREIGN KEY (HeadInstructorId) REFERENCES Instructors(Id) ON DELETE NO ACTION; -- Prevent multiple cascade paths
+GO
+
 CREATE TABLE Tracks (
     Id INT PRIMARY KEY IDENTITY(1,1),
     Name VARCHAR(100) NOT NULL,
-    DepartmentId INT,
-    FOREIGN KEY (DepartmentId) REFERENCES Departments(Id) -- One-to-Many relationship
+    DepartmentId INT NOT NULL,
+    FOREIGN KEY (DepartmentId) REFERENCES Departments(Id) ON DELETE CASCADE
 );
 GO
 
--- Create the Students table
 CREATE TABLE Students (
     Id INT PRIMARY KEY IDENTITY(1,1),
     Name VARCHAR(100) NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
-    TrackId INT,
-    FOREIGN KEY (TrackId) REFERENCES Tracks(Id) -- One-to-Many relationship
+    TrackId INT NOT NULL,
+    FOREIGN KEY (TrackId) REFERENCES Tracks(Id) ON DELETE CASCADE
 );
 GO
 
--- Create the Courses table
 CREATE TABLE Courses (
     Id INT PRIMARY KEY IDENTITY(1,1),
     Title VARCHAR(100) NOT NULL,
@@ -54,18 +56,11 @@ CREATE TABLE Courses (
 );
 GO
 
--- Create the TrackCourses junction table for Many-to-Many relationship
 CREATE TABLE TrackCourses (
-    TrackId INT,
-    CourseId INT,
+    TrackId INT NOT NULL,
+    CourseId INT NOT NULL,
     PRIMARY KEY (TrackId, CourseId),
-    FOREIGN KEY (TrackId) REFERENCES Tracks(Id), -- Many-to-Many relationship
-    FOREIGN KEY (CourseId) REFERENCES Courses(Id) -- Many-to-Many relationship
+    FOREIGN KEY (TrackId) REFERENCES Tracks(Id) ON DELETE CASCADE,
+    FOREIGN KEY (CourseId) REFERENCES Courses(Id) ON DELETE CASCADE
 );
-GO
-
--- Add the foreign key constraint for HeadInstructorId in Departments table
-ALTER TABLE Departments
-ADD CONSTRAINT FK_Departments_HeadInstructorId
-FOREIGN KEY (HeadInstructorId) REFERENCES Instructors(Id); -- One-to-One relationship
 GO
