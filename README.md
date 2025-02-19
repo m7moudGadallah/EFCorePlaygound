@@ -21,9 +21,9 @@ Look at the database schema using `DBML` file [here](./docs/database.dbml)
 
 1. Clone this repository
 
-```bash
-git clone <repo_url>
-```
+   ```bash
+   git clone <repo_url>
+   ```
 
 2. Open the solution file in Visual Studio
 
