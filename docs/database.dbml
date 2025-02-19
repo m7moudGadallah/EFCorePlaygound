@@ -1,0 +1,56 @@
+Table Instructors {
+    Id int [primary key, increment]
+    Name varchar(100)
+    Email varchar(100) [unique]
+    SupervisorId int
+    DepartmentId int
+}
+
+Table Students {
+    Id int [primary key, increment]
+    Name varchar(100)
+    Email varchar(100) [unique]
+    TrackId int
+}
+
+Table Courses {
+    Id int [primary key, increment]
+    Title varchar(100)
+    CreditHours int
+}
+
+Table Tracks {
+    Id int [primary key, increment]
+    Name varchar(100)
+    DepartmentId int
+}
+
+Table Departments {
+    Id int [primary key, increment]
+    Name varchar(100)
+    HeadInstructorId int [unique]
+}
+
+Table TrackCourses {
+    TrackId int
+    CourseId int
+}
+
+///////////////////////////////////////////
+// Relationships
+///////////////////////////////////////////
+
+// One-to-One (1:1)
+Ref: Departments.HeadInstructorId > Instructors.Id  // Each department has one head instructor
+
+// One-to-Many (1:M)
+Ref: Departments.Id < Tracks.DepartmentId  // A department has many tracks
+Ref: Departments.Id < Instructors.DepartmentId  // A department has many instructors
+Ref: Tracks.Id < Students.TrackId  // A track has many students
+
+// Many-to-Many (M:N)
+Ref: Tracks.Id < TrackCourses.TrackId
+Ref: Courses.Id < TrackCourses.CourseId  // Tracks contain multiple courses
+
+// Recursive Relationship (1:M)
+Ref: Instructors.Id < Instructors.SupervisorId  // An instructor can have a supervisor (another instructor)
